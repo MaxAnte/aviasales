@@ -11,16 +11,15 @@ import "./App.css";
 
 function App() {
   const dispatch = useDispatch();
-  const ticketState = useSelector((state: RootStore) => state.ticket);
+  const store = useSelector((state: RootStore) => state.data);
 
   useEffect(() => {
     dispatch(getSearchId());
   }, []);
 
   useEffect(() => {
-    if (ticketState.searchId && !ticketState.stop)
-      dispatch(getTickets(ticketState.searchId));
-  }, [ticketState.searchId, ticketState.stop]);
+    if (store.searchId && !store.stop) dispatch(getTickets(store.searchId));
+  }, [store.searchId, store.stop]);
 
   return (
     <div className="wrapper">

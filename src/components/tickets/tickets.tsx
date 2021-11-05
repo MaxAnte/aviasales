@@ -7,14 +7,12 @@ import TicketCard from "../ticketCard/ticketCard";
 import "./tickets.css";
 
 function Tickets() {
-  const ticketState = useSelector((state: RootStore) => state.ticket);
+  const store = useSelector((state: RootStore) => state.data);
 
   return (
     <div className="tickets-wrapper">
-      {ticketState.tickets ? (
-        ticketState.tickets.map((ticket, i) => (
-          <TicketCard ticket={ticket} key={i} />
-        ))
+      {store.tickets ? (
+        store.tickets.map((ticket, i) => <TicketCard ticket={ticket} key={i} />)
       ) : (
         <p>No tickets</p>
       )}
