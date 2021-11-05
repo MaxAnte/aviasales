@@ -3,7 +3,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { getSearchId, getTickets } from "./actions/ticket.actions";
 import { RootStore } from "./store";
 
-import TicketCard from "./components/ticketCard/ticketCard";
+import Filters from "./components/filters/filters";
+import Tickets from "./components/tickets/tickets";
+import TicketsSortingBar from "./components/ticketsSortingBar/ticketsSortingBar";
 
 import "./App.css";
 
@@ -21,11 +23,18 @@ function App() {
   }, [ticketState.searchId, ticketState.stop]);
 
   return (
-    <div className="App">
-      <h1>{ticketState.searchId}</h1>
-      {ticketState.tickets?.map((ticket, i) => (
-        <TicketCard ticket={ticket} key={i} />
-      ))}
+    <div className="wrapper">
+      {/* <Logo /> */}
+      <h1>Logo</h1>
+      <main className="main">
+        <aside>
+          <Filters />
+        </aside>
+        <section className="tickets-wrapper">
+          <TicketsSortingBar />
+          <Tickets />
+        </section>
+      </main>
     </div>
   );
 }
