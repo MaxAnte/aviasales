@@ -6,6 +6,7 @@ import { RootStore } from "./store";
 import Filters from "./components/filters/filters";
 import Tickets from "./components/tickets/tickets";
 import SortingBar from "./components/sortingBar/sortingBar";
+import LogoIcon from "./assets/icons/logoIcon";
 
 import "./App.css";
 
@@ -23,8 +24,7 @@ function App() {
 
   return (
     <div className="wrapper">
-      {/* <Logo /> */}
-      <h1>Logo</h1>
+      <LogoIcon width="50" height="50" />
       <main className="main">
         <aside>
           <Filters />
