@@ -1,7 +1,8 @@
 import React from "react";
-import "./ticketsSortingBar.css";
 
-function TicketsSortingBar() {
+import "./sortingBar.css";
+
+function SortingBar() {
   return (
     <div className="sorting-bar">
       <button type="button" className="btn-sort">
@@ -14,4 +15,4 @@ function TicketsSortingBar() {
   );
 }
 
-export default TicketsSortingBar;
+export default SortingBar;

@@ -5,7 +5,7 @@ import { RootStore } from "./store";
 
 import Filters from "./components/filters/filters";
 import Tickets from "./components/tickets/tickets";
-import TicketsSortingBar from "./components/ticketsSortingBar/ticketsSortingBar";
+import SortingBar from "./components/sortingBar/sortingBar";
 
 import "./App.css";
 
@@ -30,7 +30,7 @@ function App() {
           <Filters />
         </aside>
         <section className="tickets-wrapper">
-          <TicketsSortingBar />
+          <SortingBar />
           <Tickets />
         </section>
       </main>
