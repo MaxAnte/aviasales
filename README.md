@@ -1,46 +1,104 @@
-# Getting Started with Create React App
+# Тестовое задание Aviasales ([frontend](https://aviasales.recruitee.com/o/frontend-developer-js-coffeescript-react%C2%A0redux--aviasalesru))
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Основной frontend проект нашей команды — это страница выдачи билетов со множеством фильтров, настроек и, собственно, билетов.
+Проект написан на React, поэтому тестовое задание приближено к ежедневным задачам.
 
-## Available Scripts
+Перед тобой упрощенный макет нашего проекта — список билетов, фильтры и сортировка. Также у нас есть небольшой сервер для тестового задания, который работает схоже с нашим основным backend движком и реализует технику long polling для передачи пачек билетов. Тебе необходимо реализовать клиент, который будет получать случайно сгенерированные билеты от сервера и отрисует интерфейс согласно макету в Figma. Достаточно будет отрендерить 5 первых билетов соотвествующих выбранным фильтрам и сортировки.
 
-In the project directory, you can run:
+## Условия
 
-### `npm start`
+- Используй React
+- Используй TS или JS
+- Работоспособность в актуальной версии Google Chrome
+- Остальное на твоё усмотрение
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Документация по работе с сервером: [Здесь](https://github.com/KosyanMedia/test-tasks/blob/master/aviasales_frontend/server.md)
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Макет (Figma)
+https://github.com/KosyanMedia/test-tasks/raw/f0f60244b045928746188a86ba4f76ddb5515111/aviasales_frontend/Aviasales%20Test%20Task.fig
 
-### `npm test`
+Figma 
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+![](search_preview.png?raw=true)
 
-### `npm run build`
+Удачи! Если будут какие-то вопросы, пиши – добавим уточнения в репу.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+P.S.: Картинки авиакомпаний можешь брать с нашего CDN: `//pics.avs.io/99/36/{IATA_CODE_HERE}.png`
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+# Server md
 
-### `npm run eject`
+# Описание взаимодействия с сервером
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+Схема работы проста: сначала необходимо инициировать поиск на сервере и получить идентификатор поиска (`searchId`). Далее, с полученным `searchId`, ты делаешь запросы для получения неотсортированных списков билетов. Обрати внимание, что билеты прилетают пачками, которые необходимо агрегировать, фильтровать и сортировать согласно выбранным в интерфейсе параметрам. Для усложнения задачи, сервер может на один из запросов ответить ошибкой.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Получение `searchId`
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+Просто отправь GET-запрос на `https://front-test.beta.aviasales.ru/search` и получи его.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+Пример:
 
-## Learn More
+Request: `https://front-test.beta.aviasales.ru/search`
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Response: `{"searchId":"4niyd"}`
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Получение пачки билетов
+
+Отправляй GET-запросы на `https://front-test.beta.aviasales.ru/tickets` и передай searchId полученный из запроса выше GET-параметром.
+
+Пример:
+
+Request: `https://front-test.beta.aviasales.ru/tickets?searchId=4niyd`
+
+Response: `{tickets: [], stop: false}`
+
+## Обработка завершения поиска
+
+Поиск считается завершенным, когда в очередном ответе от сервера придёт значение `{stop: true}`.
+
+Пример:
+
+Request: `https://front-test.beta.aviasales.ru/tickets?searchId=4niyd`
+
+Response: `{tickets: [], stop: true}`
+
+## Структура билета
+
+В списке `tickets` будут лежать билеты следующей структуры:
+
+```typescript
+interface Ticket {
+  // Цена в рублях
+  price: number
+  // Код авиакомпании (iata)
+  carrier: string
+  // Массив перелётов.
+  // В тестовом задании это всегда поиск "туда-обратно" значит состоит из двух элементов
+  segments: [
+    {
+      // Код города (iata)
+      origin: string
+      // Код города (iata)
+      destination: string
+      // Дата и время вылета туда
+      date: string
+      // Массив кодов (iata) городов с пересадками
+      stops: string[]
+      // Общее время перелёта в минутах
+      duration: number
+    },
+    {
+      // Код города (iata)
+      origin: string
+      // Код города (iata)
+      destination: string
+      // Дата и время вылета обратно
+      date: string
+      // Массив кодов (iata) городов с пересадками
+      stops: string[]
+      // Общее время перелёта в минутах
+      duration: number
+    }
+  ]
+}
+```
