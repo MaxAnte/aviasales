@@ -18,8 +18,8 @@ function App() {
   }, []);
 
   useEffect(() => {
-    if (store.searchId && !store.stop) dispatch(getTickets(store.searchId));
-  }, [store.searchId, store.stop]);
+    if (store.searchId) dispatch(getTickets(store.searchId));
+  }, [store.searchId]);
 
   return (
     <div className="wrapper">
