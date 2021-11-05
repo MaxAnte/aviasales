@@ -1,24 +1,31 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getSearchId, getTickets } from "./actions/ticket.actions";
+import { RootStore } from "./store";
+
+import TicketCard from "./components/ticketCard/ticketCard";
+
+import "./App.css";
 
 function App() {
+  const dispatch = useDispatch();
+  const ticketState = useSelector((state: RootStore) => state.ticket);
+
+  useEffect(() => {
+    dispatch(getSearchId());
+  }, []);
+
+  useEffect(() => {
+    if (ticketState.searchId && !ticketState.stop)
+      dispatch(getTickets(ticketState.searchId));
+  }, [ticketState.searchId, ticketState.stop]);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>{ticketState.searchId}</h1>
+      {ticketState.tickets?.map((ticket, i) => (
+        <TicketCard ticket={ticket} key={i} />
+      ))}
     </div>
   );
 }
