@@ -36,7 +36,6 @@ export const getTickets =
         `https://front-test.beta.aviasales.ru/tickets?searchId=${searchId}`
       );
       const data = await res.json();
-      console.log(data);
 
       dispatch({ type: TICKETS_SUCCESS, payload: data });
     } catch (error) {
