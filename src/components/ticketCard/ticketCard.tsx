@@ -71,7 +71,7 @@ function TicketCard({ ticket }: Props) {
 
   const createDurationString = (minutes: number) =>
     minutes % 60 === 0
-      ? `${minutes}ч`
+      ? `${minutes / 60}ч`
       : `${(minutes - (minutes % 60)) / 60}ч ${minutes % 60}м`;
 
   const createStartEndTimeString = (datestr: string, duration: number) => {
@@ -83,7 +83,7 @@ function TicketCard({ ticket }: Props) {
   return (
     <StyledTicket>
       <StyledTicketHeader>
-        <StyledPrice>{ticket.price} P</StyledPrice>
+        <StyledPrice>{ticket.price.toLocaleString("ru")} P</StyledPrice>
         <img
           src={`https://pics.avs.io/99/36/${ticket.carrier}.png`}
           alt={ticket.carrier}
