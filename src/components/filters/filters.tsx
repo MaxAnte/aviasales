@@ -10,7 +10,7 @@ const StyledFiltersTitle = styled.p`
   letter-spacing: 0.5px;
   text-transform: uppercase;
   color: #4a4a4a;
-  padding: 10px 20px 20px;
+  padding: 10px 20px;
 `;
 
 const StyledInputGroup = styled.div`
