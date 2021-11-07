@@ -31,7 +31,11 @@ function Tickets() {
 
   return (
     <StyledTicketsWrapper>
-      {store.tickets ? (
+      {store.filteredTickets.length ? (
+        store.filteredTickets
+          .slice(0, 5)
+          .map((ticket, i) => <TicketCard ticket={ticket} key={i} />)
+      ) : store.tickets.length ? (
         store.tickets
           .slice(0, 5)
           .map((ticket, i) => <TicketCard ticket={ticket} key={i} />)

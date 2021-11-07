@@ -10,6 +10,7 @@ import {
   TICKETS_CHEAP,
   TicketsDispatchTypes,
   TICKETS_FAST,
+  TICKETS_FILTERED,
 } from "./ticket.actions.types";
 
 export const getSearchId =
@@ -50,3 +51,8 @@ export const sortCheapTickets = {
 export const sortFastTickets = {
   type: TICKETS_FAST,
 };
+
+export const filterTickets = (filters: string[]) => ({
+  type: TICKETS_FILTERED,
+  payload: { filters },
+});

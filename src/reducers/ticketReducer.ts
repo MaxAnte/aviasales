@@ -9,19 +9,23 @@ import {
   TICKETS_CHEAP,
   TICKETS_FAIL,
   TICKETS_FAST,
+  TICKETS_FILTERED,
   TICKETS_SUCCESS,
 } from "../actions/ticket.actions.types";
 
 interface InitialState {
   loading: boolean;
   searchId?: string;
-  tickets?: Ticket[];
+  tickets: Ticket[];
+  filteredTickets: Ticket[];
   stop: boolean;
   error?: { message: string };
 }
 
 const initialState: InitialState = {
   loading: true,
+  tickets: [],
+  filteredTickets: [],
   stop: false,
 };
 
@@ -60,26 +64,51 @@ const ticketReducer = (
     case TICKETS_CHEAP:
       return {
         ...state,
-        tickets: state.tickets?.length
-          ? [...state.tickets.sort((a, b) => a.price - b.price)]
-          : undefined,
+        tickets: [...state.tickets.sort((a, b) => a.price - b.price)],
+        filteredTickets: [
+          ...state.filteredTickets.sort((a, b) => a.price - b.price),
+        ],
       };
     case TICKETS_FAST:
       return {
         ...state,
-        tickets: state.tickets?.length
-          ? [
-              ...state.tickets.sort(
-                (a, b) =>
-                  a.segments.reduce(
-                    (acc: number, cur) => acc + cur.duration,
-                    0
-                  ) -
-                  b.segments.reduce((acc: number, cur) => acc + cur.duration, 0)
-              ),
-            ]
-          : undefined,
+        tickets: [
+          ...state.tickets.sort(
+            (a, b) =>
+              a.segments.reduce((acc: number, cur) => acc + cur.duration, 0) -
+              b.segments.reduce((acc: number, cur) => acc + cur.duration, 0)
+          ),
+        ],
+        filteredTickets: [
+          ...state.filteredTickets.sort(
+            (a, b) =>
+              a.segments.reduce((acc: number, cur) => acc + cur.duration, 0) -
+              b.segments.reduce((acc: number, cur) => acc + cur.duration, 0)
+          ),
+        ],
       };
+    case TICKETS_FILTERED:
+      if (
+        action.payload.filters.includes("all") ||
+        !action.payload.filters.length
+      ) {
+        return { ...state, filteredTickets: [...state.tickets] };
+      } else {
+        const newState = { ...state };
+        newState.filteredTickets = newState.tickets;
+        action.payload.filters.map((el) => {
+          newState.filteredTickets = newState.filteredTickets.filter((ticket) =>
+            ticket.segments
+              .map((seg) => Boolean(seg.stops.length === +el.split("_")[1]))
+              .includes(true)
+          );
+          return el;
+        });
+        return {
+          ...state,
+          filteredTickets: newState.filteredTickets,
+        };
+      }
 
     default:
       return state;

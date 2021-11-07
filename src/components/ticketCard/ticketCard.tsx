@@ -102,8 +102,7 @@ function TicketCard({ ticket }: Props) {
           <StyledSegCol>
             <StyledSegTitle>В пути</StyledSegTitle>
             <StyledSegContent>
-              {/* {createDurationString(seg.duration)} */}
-              {seg.duration}
+              {createDurationString(seg.duration)}
             </StyledSegContent>
           </StyledSegCol>
           <StyledSegCol>

@@ -1,9 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
 import styled from "styled-components";
+
+import { filterTickets } from "../../actions/ticket.actions";
 import { filters } from "./filters.const";
 
 import "./filters.css";
-import { Filter } from "./filters.types";
 
 const StyledFiltersTitle = styled.p`
   font-weight: 600;
@@ -88,6 +90,7 @@ const StyledLabel = styled.label`
 `;
 
 function Filters() {
+  const dispatch = useDispatch();
   const [activeFilters, setActiveFilters] = useState<string[]>([]);
 
   const handleFilterCheck = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -103,6 +106,10 @@ function Filters() {
       );
     }
   };
+
+  useEffect(() => {
+    dispatch(filterTickets(activeFilters));
+  }, [dispatch, activeFilters]);
 
   return (
     <>
