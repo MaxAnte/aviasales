@@ -9,6 +9,7 @@ import {
   TICKETS_SUCCESS,
   TICKETS_CHEAP,
   TicketsDispatchTypes,
+  TICKETS_FAST,
 } from "./ticket.actions.types";
 
 export const getSearchId =
@@ -44,4 +45,8 @@ export const getTickets =
 
 export const filterCheapTickets = {
   type: TICKETS_CHEAP,
+};
+
+export const filterFastTickets = {
+  type: TICKETS_FAST,
 };

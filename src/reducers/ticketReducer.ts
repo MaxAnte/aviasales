@@ -8,6 +8,7 @@ import {
   TicketsDispatchTypes,
   TICKETS_CHEAP,
   TICKETS_FAIL,
+  TICKETS_FAST,
   TICKETS_SUCCESS,
 } from "../actions/ticket.actions.types";
 
@@ -57,11 +58,26 @@ const ticketReducer = (
       };
 
     case TICKETS_CHEAP:
-      console.log(state.tickets?.length);
       return {
         ...state,
         tickets: state.tickets?.length
           ? [...state.tickets.sort((a, b) => a.price - b.price)]
+          : undefined,
+      };
+    case TICKETS_FAST:
+      return {
+        ...state,
+        tickets: state.tickets?.length
+          ? [
+              ...state.tickets.sort(
+                (a, b) =>
+                  a.segments.reduce(
+                    (acc: number, cur) => acc + cur.duration,
+                    0
+                  ) -
+                  b.segments.reduce((acc: number, cur) => acc + cur.duration, 0)
+              ),
+            ]
           : undefined,
       };
 

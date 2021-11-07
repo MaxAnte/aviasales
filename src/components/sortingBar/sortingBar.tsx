@@ -1,7 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
-import { filterCheapTickets } from "../../actions/ticket.actions";
+import {
+  filterCheapTickets,
+  filterFastTickets,
+} from "../../actions/ticket.actions";
 import { RootStore } from "../../store";
 
 import "./sortingBar.css";
@@ -31,6 +34,11 @@ function SortingBar() {
   const dispacth = useDispatch();
   const ticketsStore = useSelector((state: RootStore) => state.data.tickets);
   const [activeTab, setActiveTab] = useState<"cheap" | "fast">("cheap");
+
+  useEffect(() => {
+    ticketsStore?.length && dispacth(filterCheapTickets);
+  }, [ticketsStore?.length, dispacth]);
+
   return (
     <StyledSortingBar>
       <StyledButton
@@ -47,7 +55,7 @@ function SortingBar() {
         active={activeTab === "fast"}
         type="button"
         onClick={() => {
-          // ticketsStore?.length && dispacth(filterCheapTickets());
+          ticketsStore?.length && dispacth(filterFastTickets);
           setActiveTab("fast");
         }}
       >
