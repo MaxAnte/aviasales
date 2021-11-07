@@ -16,6 +16,7 @@ const StyledButton = styled.button`
   padding: 15px;
   border: none;
   outline: none;
+  text-transform: uppercase;
   background-color: ${({ active }: { active: boolean }) =>
     active ? "#2196F3" : "#ffffff"};
   color: ${({ active }: { active: boolean }) =>
