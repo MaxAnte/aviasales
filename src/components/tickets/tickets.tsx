@@ -20,7 +20,9 @@ function Tickets() {
   return (
     <StyledTicketsWrapper>
       {store.tickets ? (
-        store.tickets.map((ticket, i) => <TicketCard ticket={ticket} key={i} />)
+        store.tickets
+          .slice(0, 5)
+          .map((ticket, i) => <TicketCard ticket={ticket} key={i} />)
       ) : (
         <Loader />
       )}
