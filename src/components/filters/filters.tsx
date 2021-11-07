@@ -42,13 +42,15 @@ const StyledCheckbox = styled.input`
 `;
 
 const StyledLabel = styled.label`
+  display: flex;
+  align-items: center;
+  position: relative;
+  width: 100%;
   margin-left: 10px;
   font-size: 13px;
   line-height: 20px;
   color: #4a4a4a;
-  display: flex;
-  align-items: center;
-  position: relative;
+  cursor: pointer;
 
   &::before {
     content: "";
@@ -70,7 +72,7 @@ const StyledLabel = styled.label`
     content: "";
     position: absolute;
     top: 7px;
-    left: 6px;
+    left: 5px;
     width: 10px;
     height: 4px;
     border-left: 2px solid #2196f3;
