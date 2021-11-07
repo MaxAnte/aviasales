@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
+import { filters } from "./filters.const";
 
 import "./filters.css";
+import { Filter } from "./filters.types";
 
 const StyledFiltersTitle = styled.p`
   font-weight: 600;
@@ -86,30 +88,37 @@ const StyledLabel = styled.label`
 `;
 
 function Filters() {
+  const [activeFilters, setActiveFilters] = useState<string[]>([]);
+
+  const handleFilterCheck = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.id === "all") {
+      setActiveFilters(
+        activeFilters.includes("all") ? [] : filters.map((el) => el.value)
+      );
+    } else {
+      setActiveFilters(
+        activeFilters.includes(e.target.id)
+          ? activeFilters.filter((el) => el !== e.target.id && el !== "all")
+          : [...activeFilters, e.target.id]
+      );
+    }
+  };
+
   return (
-    <div className="filters">
+    <>
       <StyledFiltersTitle>Количество пересадок</StyledFiltersTitle>
-      <StyledInputGroup>
-        <StyledCheckbox type="checkbox" id="all" />
-        <StyledLabel htmlFor="all">Все</StyledLabel>
-      </StyledInputGroup>
-      <StyledInputGroup>
-        <StyledCheckbox type="checkbox" id="noone" />
-        <StyledLabel htmlFor="noone">Без пересадок</StyledLabel>
-      </StyledInputGroup>
-      <StyledInputGroup>
-        <StyledCheckbox type="checkbox" id="change_1" />
-        <StyledLabel htmlFor="change_1">1 пересадка</StyledLabel>
-      </StyledInputGroup>
-      <StyledInputGroup>
-        <StyledCheckbox type="checkbox" id="change_2" />
-        <StyledLabel htmlFor="change_2">2 пересадки</StyledLabel>
-      </StyledInputGroup>
-      <StyledInputGroup>
-        <StyledCheckbox type="checkbox" id="change_3" />
-        <StyledLabel htmlFor="change_3">3 пересадки</StyledLabel>
-      </StyledInputGroup>
-    </div>
+      {filters.map((filter) => (
+        <StyledInputGroup key={filter.id}>
+          <StyledCheckbox
+            type="checkbox"
+            id={filter.value}
+            checked={activeFilters.includes(filter.value)}
+            onChange={handleFilterCheck}
+          />
+          <StyledLabel htmlFor={filter.value}>{filter.name}</StyledLabel>
+        </StyledInputGroup>
+      ))}
+    </>
   );
 }
 
