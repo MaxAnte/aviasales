@@ -57,13 +57,11 @@ const ticketReducer = (
       };
 
     case TICKETS_CHEAP:
+      console.log(state.tickets?.length);
       return {
         ...state,
-        tickets: state.tickets
-          ? [
-              ...state.tickets,
-              ...state.tickets.sort((a, b) => a.price - b.price),
-            ]
+        tickets: state.tickets?.length
+          ? [...state.tickets.sort((a, b) => a.price - b.price)]
           : undefined,
       };
 
