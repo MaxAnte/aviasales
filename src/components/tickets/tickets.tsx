@@ -21,9 +21,9 @@ const StyledErrorMessage = styled.span`
   letter-spacing: 0.5px;
   text-transform: uppercase;
   color: #ffffff;
-  padding: 10 px 20 px;
+  padding: 10px 20px;
   background-color: #fb4b4bbf;
-  border-radius: 4 px;
+  border-radius: 4px;
 `;
 
 function Tickets() {
