@@ -15,6 +15,7 @@ const StyledTicket = styled.div`
   border-radius: 5px;
   margin-bottom: 20px;
   padding: 20px;
+  width: 100%;
 `;
 
 const StyledTicketHeader = styled.div`

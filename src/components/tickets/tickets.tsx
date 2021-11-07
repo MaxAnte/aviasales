@@ -1,22 +1,30 @@
 import React from "react";
+import styled from "styled-components";
 import { useSelector } from "react-redux";
 import { RootStore } from "../../store";
 
 import TicketCard from "../ticketCard/ticketCard";
+import Loader from "../loader/loader";
 
 import "./tickets.css";
+
+const StyledTicketsWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
 
 function Tickets() {
   const store = useSelector((state: RootStore) => state.data);
 
   return (
-    <div className="tickets-wrapper">
+    <StyledTicketsWrapper>
       {store.tickets ? (
         store.tickets.map((ticket, i) => <TicketCard ticket={ticket} key={i} />)
       ) : (
-        <p>No tickets</p>
+        <Loader />
       )}
-    </div>
+    </StyledTicketsWrapper>
   );
 }
 
