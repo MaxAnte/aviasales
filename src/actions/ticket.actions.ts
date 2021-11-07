@@ -7,6 +7,7 @@ import {
   TICKETS,
   TICKETS_FAIL,
   TICKETS_SUCCESS,
+  TICKETS_CHEAP,
   TicketsDispatchTypes,
 } from "./ticket.actions.types";
 
@@ -40,3 +41,7 @@ export const getTickets =
       dispatch({ type: TICKETS_FAIL });
     }
   };
+
+export const filterCheapTickets = {
+  type: TICKETS_CHEAP,
+};

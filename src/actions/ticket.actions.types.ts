@@ -5,6 +5,7 @@ export const SEARCH_ID_SUCCESS = "SEARCH_ID_SUCCESS";
 export const TICKETS = "TICKETS";
 export const TICKETS_FAIL = "TICKETS_FAIL";
 export const TICKETS_SUCCESS = "TICKETS_SUCCESS";
+export const TICKETS_CHEAP = "TICKETS_CHEAP";
 
 export interface SearchId {
   type: typeof SEARCH_ID;
@@ -47,6 +48,13 @@ export interface TicketsSuccess {
   type: typeof TICKETS_SUCCESS;
   payload: { tickets: Ticket[]; stop: boolean };
 }
+export interface TicketsCheap {
+  type: typeof TICKETS_CHEAP;
+}
 
 export type SearchIdDispatchTypes = SearchId | SearchIdFail | SearchIdSuccess;
-export type TicketsDispatchTypes = Tickets | TicketsFail | TicketsSuccess;
+export type TicketsDispatchTypes =
+  | Tickets
+  | TicketsFail
+  | TicketsSuccess
+  | TicketsCheap;

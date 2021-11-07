@@ -6,6 +6,7 @@ import {
   Ticket,
   TICKETS,
   TicketsDispatchTypes,
+  TICKETS_CHEAP,
   TICKETS_FAIL,
   TICKETS_SUCCESS,
 } from "../actions/ticket.actions.types";
@@ -15,6 +16,7 @@ interface InitialState {
   searchId?: string;
   tickets?: Ticket[];
   stop: boolean;
+  error?: { message: string };
 }
 
 const initialState: InitialState = {
@@ -37,7 +39,11 @@ const ticketReducer = (
       return { ...state, loading: false, searchId: action.payload.searchId };
 
     case TICKETS_FAIL:
-      return { ...state, loading: false };
+      return {
+        ...state,
+        loading: false,
+        error: { message: "Ошибка сервера, попробуйте снова" },
+      };
 
     case TICKETS:
       return { ...state, loading: true };
@@ -48,6 +54,17 @@ const ticketReducer = (
         loading: false,
         tickets: action.payload.tickets,
         stop: action.payload.stop,
+      };
+
+    case TICKETS_CHEAP:
+      return {
+        ...state,
+        tickets: state.tickets
+          ? [
+              ...state.tickets,
+              ...state.tickets.sort((a, b) => a.price - b.price),
+            ]
+          : undefined,
       };
 
     default:

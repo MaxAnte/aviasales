@@ -1,5 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
+import { filterCheapTickets } from "../../actions/ticket.actions";
+import { RootStore } from "../../store";
 
 import "./sortingBar.css";
 
@@ -25,12 +28,29 @@ const StyledButton = styled.button`
 `;
 
 function SortingBar() {
+  const dispacth = useDispatch();
+  const ticketsStore = useSelector((state: RootStore) => state.data.tickets);
+  const [activeTab, setActiveTab] = useState<"cheap" | "fast">("cheap");
   return (
     <StyledSortingBar>
-      <StyledButton active={true} type="button">
+      <StyledButton
+        active={activeTab === "cheap"}
+        type="button"
+        onClick={() => {
+          ticketsStore?.length && dispacth(filterCheapTickets);
+          setActiveTab("cheap");
+        }}
+      >
         Самый дешевый
       </StyledButton>
-      <StyledButton active={false} type="button">
+      <StyledButton
+        active={activeTab === "fast"}
+        type="button"
+        onClick={() => {
+          // ticketsStore?.length && dispacth(filterCheapTickets());
+          setActiveTab("fast");
+        }}
+      >
         Самый быстрый
       </StyledButton>
     </StyledSortingBar>
@@ -38,3 +58,8 @@ function SortingBar() {
 }
 
 export default SortingBar;
+function dispacth(arg0: {
+  type: string;
+}): React.MouseEventHandler<HTMLButtonElement> | undefined {
+  throw new Error("Function not implemented.");
+}

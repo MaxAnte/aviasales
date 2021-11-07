@@ -14,6 +14,18 @@ const StyledTicketsWrapper = styled.div`
   align-items: center;
 `;
 
+const StyledErrorMessage = styled.span`
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 12px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: #ffffff;
+  padding: 10 px 20 px;
+  background-color: #fb4b4bbf;
+  border-radius: 4 px;
+`;
+
 function Tickets() {
   const store = useSelector((state: RootStore) => state.data);
 
@@ -23,6 +35,8 @@ function Tickets() {
         store.tickets
           .slice(0, 5)
           .map((ticket, i) => <TicketCard ticket={ticket} key={i} />)
+      ) : store.error ? (
+        <StyledErrorMessage>{store.error.message}</StyledErrorMessage>
       ) : (
         <Loader />
       )}
