@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import {
-  filterCheapTickets,
-  filterFastTickets,
+  sortCheapTickets,
+  sortFastTickets,
 } from "../../actions/ticket.actions";
 import { RootStore } from "../../store";
 
@@ -36,7 +36,7 @@ function SortingBar() {
   const [activeTab, setActiveTab] = useState<"cheap" | "fast">("cheap");
 
   useEffect(() => {
-    ticketsStore?.length && dispacth(filterCheapTickets);
+    ticketsStore?.length && dispacth(sortCheapTickets);
   }, [ticketsStore?.length, dispacth]);
 
   return (
@@ -45,7 +45,7 @@ function SortingBar() {
         active={activeTab === "cheap"}
         type="button"
         onClick={() => {
-          ticketsStore?.length && dispacth(filterCheapTickets);
+          ticketsStore?.length && dispacth(sortCheapTickets);
           setActiveTab("cheap");
         }}
       >
@@ -55,7 +55,7 @@ function SortingBar() {
         active={activeTab === "fast"}
         type="button"
         onClick={() => {
-          ticketsStore?.length && dispacth(filterFastTickets);
+          ticketsStore?.length && dispacth(sortFastTickets);
           setActiveTab("fast");
         }}
       >

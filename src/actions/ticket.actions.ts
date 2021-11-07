@@ -43,10 +43,10 @@ export const getTickets =
     }
   };
 
-export const filterCheapTickets = {
+export const sortCheapTickets = {
   type: TICKETS_CHEAP,
 };
 
-export const filterFastTickets = {
+export const sortFastTickets = {
   type: TICKETS_FAST,
 };
