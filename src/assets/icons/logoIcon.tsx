@@ -9,16 +9,16 @@ export default function LogoIcon({ className = "", ...props }: Props) {
         d="M58 30C58 45.464 45.464 58 30 58C14.536 58 2 45.464 2 30C2 14.536 14.536 2 30 2C45.464 2 58 14.536 58 30Z"
         fill="#2196F3"
         stroke="#42A5F5"
-        strokeWidth="4"
+        strokeWidth={4}
       />
       <mask
         id="mask0_1:705"
         style={{ maskType: "alpha" }}
         maskUnits="userSpaceOnUse"
-        x="0"
-        y="0"
-        width="60"
-        height="60"
+        x={0}
+        y={0}
+        width={60}
+        height={60}
       >
         <path
           fillRule="evenodd"
@@ -31,26 +31,28 @@ export default function LogoIcon({ className = "", ...props }: Props) {
         <path
           d="M2.71398 22.875H56.536"
           stroke="#42A5F5"
-          strokeWidth="4"
+          strokeWidth={4}
           strokeLinecap="square"
         />
         <path
           d="M2.71398 38.625H56.536"
           stroke="#42A5F5"
-          strokeWidth="4"
+          strokeWidth={4}
           strokeLinecap="square"
         />
         <path
           d="M29.25 4.5C29.25 4.5 19.2878 16.0775 19.5035 30.75C19.7191 45.4225 29.25 55.5 29.25 55.5"
+          fill="#2196F3"
           stroke="#42A5F5"
-          strokeWidth="4"
+          strokeWidth={4}
           strokeLinecap="round"
           strokeLinejoin="round"
         />
         <path
           d="M30 4.5C30 4.5 39.9622 16.0775 39.7465 30.75C39.5309 45.4225 30 55.5 30 55.5"
+          fill="#2196F3"
           stroke="#42A5F5"
-          strokeWidth="4"
+          strokeWidth={4}
           strokeLinecap="round"
           strokeLinejoin="round"
         />
@@ -65,10 +67,10 @@ export default function LogoIcon({ className = "", ...props }: Props) {
         id="mask1_1:705"
         style={{ maskType: "alpha" }}
         maskUnits="userSpaceOnUse"
-        x="13"
-        y="13"
-        width="33"
-        height="34"
+        x={13}
+        y={13}
+        width={33}
+        height={34}
       >
         <path
           fillRule="evenodd"
