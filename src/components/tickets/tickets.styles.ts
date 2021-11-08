@@ -12,8 +12,8 @@ export const StyledErrorMessage = styled.span`
   line-height: 12px;
   letter-spacing: 0.5px;
   text-transform: uppercase;
-  color: #ffffff;
+  color: var(--color-white);
   padding: 10px 20px;
-  background-color: #fb4b4bbf;
+  background-color: var(--color-error-message-bg);
   border-radius: 4px;
 `;

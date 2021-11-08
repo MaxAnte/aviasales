@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const StyledTicket = styled.div`
-  background: #ffffff;
+  background: var(--color-white);
   box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
   border-radius: 5px;
   margin-bottom: 20px;
@@ -20,7 +20,7 @@ export const StyledPrice = styled.span`
   font-weight: 600;
   font-size: 24px;
   line-height: 24px;
-  color: #2196f3;
+  color: var(--color-blue);
 `;
 
 export const StyledSegment = styled.div`
@@ -42,12 +42,12 @@ export const StyledSegTitle = styled.span`
   line-height: 18px;
   letter-spacing: 0.5px;
   text-transform: uppercase;
-  color: #a0b0b9;
+  color: var(--color-light-gray);
 `;
 
 export const StyledSegContent = styled.span`
   font-weight: 600;
   font-size: 14px;
   line-height: 21px;
-  color: #4a4a4a;
+  color: var(--font-main-color);
 `;

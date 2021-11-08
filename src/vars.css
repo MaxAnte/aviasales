@@ -2,6 +2,14 @@
 
 :root {
   --font-main: "Open Sans", sans-serif;
+  --font-main-color: #4a4a4a;
 
   --color-background: #f3f7fa;
+  --color-filter-border: #9abbce;
+  --color-filter-hover: #f1fcff;
+  --color-error-message-bg: #fb4b4bbf;
+
+  --color-white: #ffffff;
+  --color-blue: #2196f3;
+  --color-light-gray: #a0b0b9;
 }

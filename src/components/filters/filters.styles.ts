@@ -6,7 +6,7 @@ export const StyledFiltersTitle = styled.p`
   line-height: 12px;
   letter-spacing: 0.5px;
   text-transform: uppercase;
-  color: #4a4a4a;
+  color: var(--font-main-color);
   padding: 10px 20px;
 `;
 
@@ -16,7 +16,7 @@ export const StyledInputGroup = styled.div`
   align-items: center;
   transition: all 0.3s ease;
   &:hover {
-    background-color: #f1fcff;
+    background-color: var(--color-filter-hoverz);
     transition: all 0.3s ease;
   }
 `;
@@ -28,7 +28,7 @@ export const StyledCheckbox = styled.input`
 
   &:checked + label {
     &::before {
-      border-color: #2196f3;
+      border-color: var(--color-blue);
       transition: all 0.3s ease;
     }
     &::after {
@@ -46,7 +46,7 @@ export const StyledLabel = styled.label`
   margin-left: 10px;
   font-size: 13px;
   line-height: 20px;
-  color: #4a4a4a;
+  color: var(--font-main-color);
   cursor: pointer;
 
   &::before {
@@ -56,8 +56,8 @@ export const StyledLabel = styled.label`
     height: 20px;
     flex-shrink: 0;
     flex-grow: 0;
-    border: 1px solid #9abbce;
-    background-color: #ffffff;
+    border: 1px solid var(--color-filter-border);
+    background-color: var(--color-white);
     border-radius: 2px;
     margin-right: 10px;
     background-repeat: no-repeat;
@@ -72,8 +72,8 @@ export const StyledLabel = styled.label`
     left: 5px;
     width: 10px;
     height: 4px;
-    border-left: 2px solid #2196f3;
-    border-bottom: 2px solid #2196f3;
+    border-left: 2px solid var(--color-blue);
+    border-bottom: 2px solid var(--color-blue);
     background-repeat: no-repeat;
     background-position: center center;
     background-size: 50% 50%;

@@ -15,8 +15,8 @@ export const StyledButton = styled.button`
   outline: none;
   text-transform: uppercase;
   background-color: ${({ active }: { active: boolean }) =>
-    active ? "#2196F3" : "#ffffff"};
+    active ? "var(--color-blue)" : "var(--color-white)"};
   color: ${({ active }: { active: boolean }) =>
-    active ? "#ffffff" : "#2196F3"};
+    active ? "var(--color-white)" : "var(--color-blue)"};
   cursor: pointer;
 `;

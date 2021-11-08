@@ -10,7 +10,7 @@ export const StyledLoader = styled.div`
     position: absolute;
     width: 6px;
     height: 6px;
-    background: #2196f3;
+    background: var(--color-blue);
     border-radius: 50%;
     animation: lds-default 1.2s linear infinite;
     &:nth-child(1) {
