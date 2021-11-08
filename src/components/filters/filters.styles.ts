@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const StyledFiltersTitle = styled.p`
   font-weight: 600;
-  font-size: 12px;
+  font-size: var(--font-main-size);
   line-height: 12px;
   letter-spacing: 0.5px;
   text-transform: uppercase;

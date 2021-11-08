@@ -23,7 +23,7 @@ export const Aside = styled.aside`
   background-color: var(--color-white);
   margin-right: 20px;
   box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
-  border-radius: 5px;
+  border-radius: var(--border-radius-default);
   padding: 10px 0px;
 `;
 

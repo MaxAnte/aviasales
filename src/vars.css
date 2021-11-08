@@ -3,6 +3,7 @@
 :root {
   --font-main: "Open Sans", sans-serif;
   --font-main-color: #4a4a4a;
+  --font-main-size: 12px;
 
   --color-background: #f3f7fa;
   --color-filter-border: #9abbce;
@@ -12,4 +13,6 @@
   --color-white: #ffffff;
   --color-blue: #2196f3;
   --color-light-gray: #a0b0b9;
+
+  --border-radius-default: 5px;
 }

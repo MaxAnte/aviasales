@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const StyledSortingBar = styled.div`
   display: flex;
   align-items: center;
-  border-radius: 5px;
+  border-radius: var(--border-radius-default);
   overflow: hidden;
   margin-bottom: 20px;
 `;
