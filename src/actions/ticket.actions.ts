@@ -15,12 +15,14 @@ import {
   TICKETS_LOAD_MORE,
 } from "./ticket.actions.types";
 
+const API_URL_BASE: string = "https://front-test.beta.aviasales.ru";
+
 export const getSearchId =
   () => async (dispatch: Dispatch<SearchIdDispatchTypes>) => {
     try {
       dispatch({ type: SEARCH_ID });
 
-      const res = await fetch("https://front-test.beta.aviasales.ru/search");
+      const res = await fetch(`${API_URL_BASE}/search`);
       const data = await res.json();
 
       dispatch({ type: SEARCH_ID_SUCCESS, payload: data });
@@ -34,9 +36,7 @@ export const getTickets =
     try {
       dispatch({ type: TICKETS });
 
-      const res = await fetch(
-        `https://front-test.beta.aviasales.ru/tickets?searchId=${searchId}`
-      );
+      const res = await fetch(`${API_URL_BASE}/tickets?searchId=${searchId}`);
       const data = await res.json();
 
       dispatch({ type: TICKETS_SUCCESS, payload: data });
