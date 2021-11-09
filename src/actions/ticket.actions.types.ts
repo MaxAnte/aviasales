@@ -8,6 +8,8 @@ export const TICKETS_SUCCESS = "TICKETS_SUCCESS";
 export const TICKETS_CHEAP = "TICKETS_CHEAP";
 export const TICKETS_FAST = "TICKETS_FAST";
 export const TICKETS_FILTERED = "TICKETS_FILTERED";
+export const TICKETS_DEFAULT = "TICKETS_DEFAULT";
+export const TICKETS_LOAD_MORE = "TICKETS_LOAD_MORE";
 
 export interface SearchId {
   type: typeof SEARCH_ID;
@@ -56,9 +58,16 @@ export interface TicketsCheap {
 export interface TicketsFast {
   type: typeof TICKETS_FAST;
 }
+export interface TicketsDefault {
+  type: typeof TICKETS_DEFAULT;
+}
 export interface TicketsFiltered {
   type: typeof TICKETS_FILTERED;
   payload: { filters: string[] };
+}
+
+export interface TicketsLoadMore {
+  type: typeof TICKETS_LOAD_MORE;
 }
 
 export type SearchIdDispatchTypes = SearchId | SearchIdFail | SearchIdSuccess;
@@ -68,4 +77,6 @@ export type TicketsDispatchTypes =
   | TicketsSuccess
   | TicketsCheap
   | TicketsFast
-  | TicketsFiltered;
+  | TicketsFiltered
+  | TicketsDefault
+  | TicketsLoadMore;

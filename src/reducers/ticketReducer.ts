@@ -11,6 +11,8 @@ import {
   TICKETS_FAST,
   TICKETS_FILTERED,
   TICKETS_SUCCESS,
+  TICKETS_DEFAULT,
+  TICKETS_LOAD_MORE,
 } from "../actions/ticket.actions.types";
 
 interface InitialState {
@@ -18,6 +20,7 @@ interface InitialState {
   searchId?: string;
   tickets: Ticket[];
   filteredTickets: Ticket[];
+  visibleTickets: number;
   stop: boolean;
   error?: { message: string };
 }
@@ -26,6 +29,7 @@ const initialState: InitialState = {
   loading: true,
   tickets: [],
   filteredTickets: [],
+  visibleTickets: 5,
   stop: false,
 };
 
@@ -87,6 +91,10 @@ const ticketReducer = (
           ),
         ],
       };
+    case TICKETS_DEFAULT:
+      return state;
+    case TICKETS_LOAD_MORE:
+      return { ...state, visibleTickets: state.visibleTickets + 5 };
     case TICKETS_FILTERED:
       if (
         action.payload.filters.includes("all") ||

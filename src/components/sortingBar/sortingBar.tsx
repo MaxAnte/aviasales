@@ -4,6 +4,7 @@ import { RootStore } from "../../store";
 import {
   sortCheapTickets,
   sortFastTickets,
+  sortDefaultTickets,
 } from "../../actions/ticket.actions";
 
 import { StyledButton, StyledSortingBar } from "./sortingBar.styles";
@@ -11,11 +12,13 @@ import { StyledButton, StyledSortingBar } from "./sortingBar.styles";
 function SortingBar() {
   const dispacth = useDispatch();
   const ticketsStore = useSelector((state: RootStore) => state.data.tickets);
-  const [activeTab, setActiveTab] = useState<"cheap" | "fast">("cheap");
+  const [activeTab, setActiveTab] = useState<"cheap" | "fast" | "optimal">(
+    "cheap"
+  );
 
   useEffect(() => {
-    ticketsStore?.length && dispacth(sortCheapTickets);
-  }, [ticketsStore?.length, dispacth]);
+    ticketsStore.length && dispacth(sortCheapTickets);
+  }, [ticketsStore.length, dispacth]);
 
   return (
     <StyledSortingBar>
@@ -23,7 +26,7 @@ function SortingBar() {
         active={activeTab === "cheap"}
         type="button"
         onClick={() => {
-          ticketsStore?.length && dispacth(sortCheapTickets);
+          ticketsStore.length && dispacth(sortCheapTickets);
           setActiveTab("cheap");
         }}
       >
@@ -33,11 +36,21 @@ function SortingBar() {
         active={activeTab === "fast"}
         type="button"
         onClick={() => {
-          ticketsStore?.length && dispacth(sortFastTickets);
+          ticketsStore.length && dispacth(sortFastTickets);
           setActiveTab("fast");
         }}
       >
         Самый быстрый
+      </StyledButton>
+      <StyledButton
+        active={activeTab === "optimal"}
+        type="button"
+        onClick={() => {
+          ticketsStore.length && dispacth(sortDefaultTickets);
+          setActiveTab("optimal");
+        }}
+      >
+        Оптимальный
       </StyledButton>
     </StyledSortingBar>
   );

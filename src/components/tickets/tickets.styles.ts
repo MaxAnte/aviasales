@@ -17,3 +17,13 @@ export const StyledErrorMessage = styled.span`
   background-color: var(--color-error-message-bg);
   border-radius: var(--border-radius-default);
 `;
+
+export const StyledLoadMore = styled.button`
+  background-color: var(--color-blue);
+  border: none;
+  border-radius: var(--border-radius-default);
+  color: var(--color-white);
+  width: 100%;
+  height: 50px;
+  font-size: 16px;
+`;
